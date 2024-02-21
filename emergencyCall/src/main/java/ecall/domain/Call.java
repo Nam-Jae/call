@@ -31,7 +31,10 @@ public class Call {
     public void onPostPersist() {
         Called called = new Called(this);
         called.publishAfterCommit();
+    }
 
+    @PostRemove
+    public void onPostUpdate(){
         CallCanceled callCanceled = new CallCanceled(this);
         callCanceled.publishAfterCommit();
     }

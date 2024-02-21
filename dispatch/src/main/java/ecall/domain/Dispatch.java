@@ -29,15 +29,6 @@ public class Dispatch {
 
     private Integer remains;
 
-    @PostPersist
-    public void onPostPersist() {
-        Dispatched dispatched = new Dispatched(this);
-        dispatched.publishAfterCommit();
-
-        DispatchCanceled dispatchCanceled = new DispatchCanceled(this);
-        dispatchCanceled.publishAfterCommit();
-    }
-
     public static DispatchRepository repository() {
         DispatchRepository dispatchRepository = DispatchApplication.applicationContext.getBean(
             DispatchRepository.class
@@ -45,61 +36,35 @@ public class Dispatch {
         return dispatchRepository;
     }
 
-    //<<< Clean Arch / Port Method
     public static void getHelp(Called called) {
-        //implement business logic here:
-
-        /** Example 1:  new item 
         Dispatch dispatch = new Dispatch();
+        dispatch.setId(called.getId());
+        dispatch.setCarId(called.getCarId());
+        dispatch.setCarType("Ambulance");
+        dispatch.setWorkerId("worker"+ called.getId());
+        dispatch.setDispatchTime(called.getAccidentTime()+"+3min");
+
+        dispatch.setRemains(dispatch.getRemains() - 1);
         repository().save(dispatch);
 
         Dispatched dispatched = new Dispatched(dispatch);
         dispatched.publishAfterCommit();
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(called.get???()).ifPresent(dispatch->{
-            
-            dispatch // do something
-            repository().save(dispatch);
-
-            Dispatched dispatched = new Dispatched(dispatch);
-            dispatched.publishAfterCommit();
-
-         });
-        */
-
     }
 
-    //>>> Clean Arch / Port Method
-    //<<< Clean Arch / Port Method
     public static void malfunction(CallCanceled callCanceled) {
-        //implement business logic here:
-
-        /** Example 1:  new item 
         Dispatch dispatch = new Dispatch();
+        dispatch.setId(callCanceled.getId());
+        dispatch.setCarId(callCanceled.getCarId());
+        dispatch.setCarType("Ambulance");
+        dispatch.setWorkerId("worker"+ callCanceled.getId());
+        dispatch.setDispatchTime(callCanceled.getAccidentTime()+"+1min");
+
+        dispatch.setRemains(dispatch.getRemains() + 1);
         repository().save(dispatch);
 
         DispatchCanceled dispatchCanceled = new DispatchCanceled(dispatch);
         dispatchCanceled.publishAfterCommit();
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(callCanceled.get???()).ifPresent(dispatch->{
-            
-            dispatch // do something
-            repository().save(dispatch);
-
-            DispatchCanceled dispatchCanceled = new DispatchCanceled(dispatch);
-            dispatchCanceled.publishAfterCommit();
-
-         });
-        */
-
     }
-    //>>> Clean Arch / Port Method
 
 }
 //>>> DDD / Aggregate Root
