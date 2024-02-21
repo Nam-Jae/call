@@ -14,4 +14,5 @@ public class DispatchCanceled extends AbstractEvent {
     private String carType;
     private String workerId;
     private String dispatchTime;
+    private Integer remains;
 }

@@ -45,6 +45,7 @@
                             
                             
                             
+                            
                         </v-list-item-title>
 
                         <v-list-item-subtitle style="font-size:25px; font-weight:700;">
@@ -53,6 +54,7 @@
                             [ CarType :  {{data.carType }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ WorkerId :  {{data.workerId }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ DispatchTime :  {{data.dispatchTime }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [ Remains :  {{data.remains }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </v-list-item-subtitle>
 
                     </v-list-item-content>
@@ -124,6 +126,7 @@
                 'carType': '',
                 'workerId': '',
                 'dispatchTime': '',
+                'remains': 0,
             }
         },
         methods: {

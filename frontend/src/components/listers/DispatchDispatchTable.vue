@@ -71,6 +71,7 @@
                     { text: "carType", value: "carType" },
                     { text: "workerId", value: "workerId" },
                     { text: "dispatchTime", value: "dispatchTime" },
+                    { text: "remains", value: "remains" },
                 ],
             dispatch : [],
             newValue: {},
@@ -92,6 +93,7 @@
                 'carType': '',
                 'workerId': '',
                 'dispatchTime': '',
+                'remains': 0,
             }
         },
         methods: {

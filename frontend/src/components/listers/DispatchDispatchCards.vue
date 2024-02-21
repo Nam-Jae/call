@@ -113,6 +113,7 @@
                 'carType': '',
                 'workerId': '',
                 'dispatchTime': '',
+                'remains': 0,
             }
         },
         methods:{

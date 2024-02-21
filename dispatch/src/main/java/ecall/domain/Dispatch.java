@@ -27,6 +27,8 @@ public class Dispatch {
 
     private String dispatchTime;
 
+    private Integer remains;
+
     @PostPersist
     public void onPostPersist() {
         Dispatched dispatched = new Dispatched(this);
