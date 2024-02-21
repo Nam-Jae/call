@@ -39,7 +39,7 @@ mvn spring-boot:run
 ```
 - dispatch
 ```
- http :8088/dispatches id="id" carId="carId" carType="carType" workerId="workerId" dispatchTime="dispatchTime" 
+ http :8088/dispatches id="id" carId="carId" carType="carType" workerId="workerId" dispatchTime="dispatchTime" remains="remains" 
 ```
 - hospital
 ```

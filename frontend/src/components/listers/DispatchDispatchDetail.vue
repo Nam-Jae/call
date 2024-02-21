@@ -17,6 +17,9 @@
             <div>
                 <String label="DispatchTime" v-model="item.dispatchTime" :editMode="editMode" @change="change" />
             </div>
+            <div>
+                <Number label="Remains" v-model="item.remains" :editMode="editMode" @change="change" />
+            </div>
         </v-card-text>
 
         <v-card-actions>

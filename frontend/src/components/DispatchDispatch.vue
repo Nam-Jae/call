@@ -20,6 +20,7 @@
             <String label="CarType" v-model="value.carType" :editMode="editMode" :inputUI="''"/>
             <String label="WorkerId" v-model="value.workerId" :editMode="editMode" :inputUI="''"/>
             <String label="DispatchTime" v-model="value.dispatchTime" :editMode="editMode" :inputUI="''"/>
+            <Number label="Remains" v-model="value.remains" :editMode="editMode" :inputUI="''"/>
         </v-card-text>
 
         <v-card-actions>
