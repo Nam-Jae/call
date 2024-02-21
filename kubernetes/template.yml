@@ -1,0 +1,228 @@
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: emergencyCall
+  labels:
+    app: emergencyCall
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: emergencyCall
+  template:
+    metadata:
+      labels:
+        app: emergencyCall
+    spec:
+      containers:
+        - name: emergencyCall
+          image: username/emergencyCall:latest
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 120
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 5
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dispatch
+  labels:
+    app: dispatch
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dispatch
+  template:
+    metadata:
+      labels:
+        app: dispatch
+    spec:
+      containers:
+        - name: dispatch
+          image: username/dispatch:latest
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 120
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 5
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hospital
+  labels:
+    app: hospital
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hospital
+  template:
+    metadata:
+      labels:
+        app: hospital
+    spec:
+      containers:
+        - name: hospital
+          image: username/hospital:latest
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 120
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 5
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: controlCenter
+  labels:
+    app: controlCenter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: controlCenter
+  template:
+    metadata:
+      labels:
+        app: controlCenter
+    spec:
+      containers:
+        - name: controlCenter
+          image: username/controlCenter:latest
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 120
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 5
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: emergencyCall
+  labels:
+    app: emergencyCall
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: emergencyCall
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: dispatch
+  labels:
+    app: dispatch
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: dispatch
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: hospital
+  labels:
+    app: hospital
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: hospital
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: controlCenter
+  labels:
+    app: controlCenter
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: controlCenter
+
