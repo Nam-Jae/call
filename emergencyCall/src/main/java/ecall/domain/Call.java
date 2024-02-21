@@ -31,13 +31,13 @@ public class Call {
     public void onPostPersist() {
         Called called = new Called(this);
         called.publishAfterCommit();
-
-        CallCanceled callCanceled = new CallCanceled(this);
-        callCanceled.publishAfterCommit();
     }
 
     @PreRemove
-    public void onPreRemove() {}
+    public void onPreRemove() {
+        CallCanceled callCanceled = new CallCanceled(this);
+        callCanceled.publishAfterCommit();
+    }
 
     public static CallRepository repository() {
         CallRepository callRepository = EmergencyCallApplication.applicationContext.getBean(

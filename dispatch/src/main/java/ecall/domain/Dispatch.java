@@ -33,7 +33,10 @@ public class Dispatch {
     public void onPostPersist() {
         Dispatched dispatched = new Dispatched(this);
         dispatched.publishAfterCommit();
+    }
 
+    @PreRemove
+    public void onPreRemove() {
         DispatchCanceled dispatchCanceled = new DispatchCanceled(this);
         dispatchCanceled.publishAfterCommit();
     }

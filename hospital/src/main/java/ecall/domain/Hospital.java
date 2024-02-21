@@ -29,7 +29,10 @@ public class Hospital {
     public void onPostPersist() {
         Reserved reserved = new Reserved(this);
         reserved.publishAfterCommit();
+    }
 
+    @PreRemove
+    public void onPreRemove() {
         Canceled canceled = new Canceled(this);
         canceled.publishAfterCommit();
     }
